@@ -9,15 +9,15 @@ interface Product {
   change: number;
 }
 
-// Helper function to map product names to matching icons/emojis
+// Icon mapping helper matching your layout
 function getProductIcon(name: string) {
   const cleanName = name ? name.toLowerCase() : "";
   if (cleanName.includes("পেঁয়াজ") || cleanName.includes("পেয়াজ")) return "🧅";
   if (cleanName.includes("আদা")) return "🫚";
   if (cleanName.includes("বেগুন")) return "🍆";
-  if (cleanName.includes("রুই") || cleanName.includes("মাছ") || cleanName.includes("ইলিশ") || cleanName.includes("কাতলা") || cleanName.includes("তেলাপিয়া")) return "🐟";
+  if (cleanName.includes("রুই") || cleanName.includes("মাছ") || cleanName.includes("ইলিশ") || cleanName.includes("কাতলা") || cleanName.includes("তেলাপিয়া") || cleanName.includes("পাঙ্গাস") || cleanName.includes("চিংড়ি")) return "🐟";
   if (cleanName.includes("ডিম")) return "🥚";
-  if (cleanName.includes("মাখন") || cleanName.includes("দুধ") || cleanName.includes("ডেইরি")) return "🧈";
+  if (cleanName.includes("মাখন") || cleanName.includes("দুধ") || cleanName.includes("দই")) return "🧈";
   if (cleanName.includes("কাঁচামরিচ") || cleanName.includes("মরিচ")) return "🌶️";
   if (cleanName.includes("রসুন")) return "🧄";
   if (cleanName.includes("আলু")) return "🥔";
@@ -25,7 +25,7 @@ function getProductIcon(name: string) {
   if (cleanName.includes("চাল")) return "🍚";
   if (cleanName.includes("তেল")) return "🧴";
   if (cleanName.includes("মাংস") || cleanName.includes("মুরগি") || cleanName.includes("গরু") || cleanName.includes("খাসি") || cleanName.includes("হাঁস")) return "🍗";
-  return "🛒"; 
+  return "🛒";
 }
 
 export default function ProductSection() {
@@ -67,23 +67,23 @@ export default function ProductSection() {
 
         extractItems(json);
 
+        // Fallback default items if fetch fails
         if (allItems.length === 0) {
           allItems = [
             { name: "পেঁয়াজ", unit: "প্রতি কেজি", price: 48, change: 2.5 },
             { name: "আদা", unit: "প্রতি কেজি", price: 85, change: 1.2 },
             { name: "বেগুন", unit: "প্রতি কেজি", price: 88, change: 0.8 },
-            { name: "ডিম", unit: "প্রতি হালি", price: 142, change: 0.5 },
-            { name: "মসুর ডাল", unit: "প্রতি কেজি", price: 142, change: 2.1 },
-            { name: "সরিষার তেল", unit: "প্রতি লিটার", price: 192, change: 1.8 },
             { name: "কাঁচামরিচ", unit: "প্রতি কেজি", price: 92, change: -12.4 },
             { name: "রসুন", unit: "প্রতি কেজি", price: 125, change: -4.5 },
             { name: "আলু", unit: "প্রতি কেজি", price: 60, change: -2.1 },
+            { name: "স্বর্ণাদ্ধি চাল", unit: "প্রতি কেজি", price: 148, change: 2.1 },
+            { name: "মিনিকেট চাল", unit: "প্রতি কেজি", price: 99, change: -2.3 },
           ];
         }
 
         setProducts(allItems);
       } catch (err) {
-        console.error("Failed to load full bazar data:", err);
+        console.error("Failed to load bazar data:", err);
       } finally {
         setLoading(false);
       }
@@ -92,13 +92,14 @@ export default function ProductSection() {
     fetchAllData();
   }, []);
 
+  // Filter based on change value for the 3 distinct layouts
   const increasedProducts = products.filter((p) => p.change > 0);
   const decreasedProducts = products.filter((p) => p.change < 0);
 
   if (loading) {
     return (
       <div className="flex justify-center items-center py-24 text-gray-500 font-medium">
-        বাজারের সব তথ্য সংগ্রহ করা হচ্ছে...
+        বাজারের তথ্য লোড হচ্ছে...
       </div>
     );
   }
@@ -111,7 +112,7 @@ export default function ProductSection() {
         <section>
           <div className="flex items-center gap-2 mb-4 text-[#D32F2F] font-bold text-lg">
             <span>▲</span>
-            <h2>আজ দাম বেড়েছে ({increasedProducts.length})</h2>
+            <h2>আজ দাম বেড়েছে</h2>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {increasedProducts.map((item, idx) => (
@@ -126,7 +127,7 @@ export default function ProductSection() {
         <section>
           <div className="flex items-center gap-2 mb-4 text-[#2E7D32] font-bold text-lg">
             <span>▼</span>
-            <h2>আজ দাম কমেছে ({decreasedProducts.length})</h2>
+            <h2>আজ দাম কমেছে</h2>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {decreasedProducts.map((item, idx) => (
@@ -139,8 +140,8 @@ export default function ProductSection() {
       {/* SECTION 3: সব পণ্য */}
       <section>
         <div className="mb-4">
-          <h2 className="text-xl font-bold text-gray-900">সব পণ্য ({products.length})</h2>
-          <p className="text-xs text-gray-500">এ API থেকে প্রাপ্ত সকল ক্যাটাগরির পণ্যের সম্পূর্ণ তালিকা</p>
+          <h2 className="text-xl font-bold text-gray-900">সব পণ্য</h2>
+          <p className="text-xs text-gray-500">মোট {products.length}টি পণ্য দেখানো হচ্ছে</p>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {products.map((item, idx) => (
@@ -161,17 +162,17 @@ function ProductCard({ product }: { product: Product }) {
   return (
     <div className="bg-white border border-gray-100 rounded-2xl p-4 shadow-sm hover:shadow-md transition flex items-center justify-between">
       <div>
-        <div className="flex items-center gap-2">
-          <span className="text-xl bg-gray-50 p-1.5 rounded-xl border border-gray-100 flex items-center justify-center w-9 h-9">
+        <div className="flex items-center gap-2.5">
+          <span className="text-xl bg-gray-50 p-2 rounded-xl border border-gray-100 flex items-center justify-center w-10 h-10 shrink-0">
             {icon}
           </span>
           <div>
             <h3 className="font-bold text-gray-800 text-base leading-snug">{product.name}</h3>
-            <p className="text-xs text-gray-400">{product.unit || "প্রতি কেজি"}</p>
+            <p className="text-xs text-gray-400 mt-0.5">{product.unit || "প্রতি কেজি"}</p>
           </div>
         </div>
         
-        <div className="mt-3 pl-1">
+        <div className="mt-4 pl-1">
           <span className="text-xs text-gray-400 block">আজকের বাজার</span>
           <span className="text-lg font-extrabold text-gray-900">{product.price} টাকা</span>
         </div>
