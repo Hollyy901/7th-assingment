@@ -35,14 +35,24 @@ export default function Navbar() {
           </div>
         </Link>
 
-        {/* User profile / Auth info placeholder */}
-        <div className="flex items-center gap-2 text-sm font-medium text-gray-700 bg-gray-50 px-3 py-1.5 rounded-full border border-gray-100">
-          <span>👤</span>
-          <span>Rezwan</span>
+        {/* Auth Buttons: Sign In & Sign Up (Matching your screenshot) */}
+        <div className="flex items-center gap-4">
+          <Link
+            href="/sign-in"
+            className="text-gray-700 hover:text-[#0D8742] font-medium text-sm transition"
+          >
+            সাইন ইন
+          </Link>
+          <Link
+            href="/sign-up"
+            className="bg-[#0D8742] hover:bg-[#0a6c35] text-white font-medium text-sm px-5 py-2.5 rounded-xl transition shadow-sm active:scale-95"
+          >
+            সাইন আপ
+          </Link>
         </div>
       </div>
 
-      {/* Category Icon Strip Bar (from your screenshot) */}
+      {/* Category Icon Strip Bar */}
       <div className="bg-[#F8F9FA] border-t border-gray-100 py-2.5">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center gap-6 overflow-x-auto scrollbar-none">
           {navCategories.map((cat) => (
