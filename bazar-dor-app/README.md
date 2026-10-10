@@ -1,36 +1,5 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
-
-## Getting Started
-
-First, run the development server:
-
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+🛒 Bazar Dor (বাজার দর)
+Bazar Dor is a modern, responsive web application designed to help people track, compare, and stay updated on the daily market prices of essential commodities across Bangladesh. From rice, lentils, and cooking oils to fresh vegetables, meat, and spices, the platform provides a clear, centralized place to observe real-time price fluctuations and market trends at a glance.
+The core of the webpage revolves around offering a seamless shopping and research experience. Users can easily filter through different food categories, check today's average rates, and examine whether prices have gone up or down compared to yesterday. By clicking on any individual product, users are taken to a detailed breakdown view that displays a comprehensive market-wise price table across various regions and divisions, alongside lowest, highest, and average pricing summaries. To make navigation intuitive, users can also instantly sort items based on their price points.
+On the technical side, the project is powered by Next.js 16 utilizing the App Router for fast, optimized routing and server-side rendering. TypeScript is used across all files to maintain strict type safety. The user interface is entirely styled with Tailwind CSS, making a clean layout. For security and user management, the application uses Better Auth alongside a MongoDB database via MongoDB Atlas, enabling seamless user registration, social and email authentication, and secure profile management.
+Building Bazar Dor has been a fantastic full-stack journey, bridging modern React patterns with real-world utility. It showcases a complete pipeline from building custom UI components and handling API data mapping to configuring production-ready backend authentication and database models.
