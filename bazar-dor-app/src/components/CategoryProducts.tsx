@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
+import Link from "next/link";
 
 interface Product {
   name: string;
@@ -154,11 +155,13 @@ export default function CategoryProducts() {
         {sortedProducts.map((product, index) => {
           const isUp = product.change > 0;
           const isZero = product.change === 0;
+          const productSlug = encodeURIComponent(product.name);
 
           return (
-            <div
+            <Link
               key={index}
-              className="bg-white border border-gray-100 rounded-2xl p-5 shadow-sm hover:shadow-md transition flex items-center justify-between"
+              href={`/products/${productSlug}`}
+              className="bg-white border border-gray-100 rounded-2xl p-5 shadow-sm hover:shadow-md transition flex items-center justify-between group"
             >
               <div>
                 <div className="flex items-center gap-3">
@@ -166,7 +169,9 @@ export default function CategoryProducts() {
                     {currentMeta.icon}
                   </span>
                   <div>
-                    <h3 className="font-bold text-gray-900 text-base">{product.name}</h3>
+                    <h3 className="font-bold text-gray-900 text-base group-hover:text-green-700 transition">
+                      {product.name}
+                    </h3>
                     <p className="text-xs text-gray-400 mt-0.5">{product.unit || "প্রতি কেজি"}</p>
                   </div>
                 </div>
@@ -192,7 +197,7 @@ export default function CategoryProducts() {
                   {isZero ? "—" : isUp ? "▲" : "▼"} {Math.abs(product.change)}%
                 </span>
               </div>
-            </div>
+            </Link>
           );
         })}
       </div>
